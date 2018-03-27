@@ -5,8 +5,8 @@
  *      Author: so
  */
 
-#ifndef LOG_HANDLING_HPP
-#define LOG_HANDLING_HPP
+#ifndef LOG_HANDLING_HPP_
+#define LOG_HANDLING_HPP_
 
 #include <string>
 #include <ctime>
@@ -16,9 +16,10 @@
 void open_log();
 void log_start();
 void log_exit();
-void sigquit_handler(int signum);
+void log_success(std::string msg);
+void log_failiure(std::string msg);
+void log_critical_failure(std::string msg);
+
 void set_sigquit_with_log();
-void log_omitted_synchronization(const int n, const int synct_time_minutes, const std::time_t last_update_time);
 
-
-#endif /* LOG_HANDLING_HPP */
+#endif /* LOG_HANDLING_HPP_ */
