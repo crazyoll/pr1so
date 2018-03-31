@@ -56,7 +56,7 @@ namespace deamon{
 				printf(file->d_name);
 			    strcpy(pom, _dirname.c_str());
 			    strcat(pom,file->d_name);
-			    //ShowDate(pom);
+			    ////ShowDate(pom);
 			}
 			return file_list;
 		}
