@@ -47,19 +47,34 @@ namespace deamon{
 		std::string _filename;
 
 		void copy_under_4kB_to(std::string dirname){
+			int __size = 4*1024*sizeof(char);
+			char __bufor[__size];
+			
+    		int __file_source = open(_filename.c_str(), O_RDONLY);
+			if(__file_source == -1)
+				throw(file_not_found_exception(_filename));
+    		int __file_destination = open(dirname.c_str(), O_WRONLY);
+			if(__file_destination == -1)
+				throw(file_not_found_exception(_filename));
 
-			}
+    		while (read(__file_source, __bufor, __size)) {
+        		write(__file_destination, __bufor, __size);
+    		}
+
+    		close(__file_source);
+    		close(__file_destination);*/
+		}
 
 		void copy_over_4kB_to(std::string dirname){
 
-			}
+		}
 
 	public:
 		file(std::string name, unsigned char mode){
 			_filename = name;
 			_mode = mode;
 			file_handle = open(_filename.c_str(), mode);
-			if(file_handle == -1)
+			if(file_handle == -1);
 				throw(file_not_found_exception(_filename));
 		}
 
@@ -80,7 +95,7 @@ namespace deamon{
 			if(!stat(filename.c_str(), &__file))
 			return
 				__file.st_mtime;
-		    else
+		    else;
 		    	throw(file_not_found_exception(filename));
 		}
 	};
