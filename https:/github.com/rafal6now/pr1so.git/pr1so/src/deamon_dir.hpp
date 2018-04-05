@@ -15,6 +15,7 @@
 #include <dirent.h>
 #include <time.h>
 #include <list>
+#include <iostream>
 
 namespace deamon{
 
@@ -45,20 +46,24 @@ namespace deamon{
 
 	public:
 		std::list<std::string> get_file_list(){
-			std::list<std::string> file_list();
-
-			struct dirent* file;
-			DIR* dir;
-			char pom[100];
-
-			while((file=readdir(dir)))
-			{
-				printf(file->d_name);
-			    strcpy(pom, _dirname.c_str());
-			    strcat(pom,file->d_name);
-			    ////ShowDate(pom);
+			std::list<std::string> __file_list;
+			
+			struct dirent* __file;
+			DIR* __dir;
+			char __temp[100];
+			if(__dir=opendir(_dirname.c_str()))
+    		{
+				while(__file=readdir(__dir))
+				{
+					//printf(file->d_name);
+			    	strcpy(__temp, _dirname.c_str());
+			    	strcat(__temp, __file->d_name);
+			    	////ShowDate(pom);
+				}
 			}
-			return file_list;
+   		 	else
+        		throw(1);
+			return __file_list;
 		}
 
 
@@ -66,9 +71,10 @@ namespace deamon{
 
 		directory(std::string dirname){
 			_dirname = dirname;
-			if(!(dir_handle = opendir(_dirname.c_str()))){
+			dir_handle = opendir(_dirname.c_str());
+			/*if(!(dir_handle = opendir(_dirname.c_str()))){
 				throw(1);
-			}
+			}*/
 		}
 
 		~directory(){
