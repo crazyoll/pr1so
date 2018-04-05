@@ -1,7 +1,7 @@
 //============================================================================
 //C++ version: 17
 //============================================================================
-*/
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -9,6 +9,8 @@
 #include <dirent.h>
 #include <ctime>
 #include <chrono>
+#include "deamon_dir.hpp"
+#include "deamon_file.hpp"
 
 volatile time_t last_synchronization;
 volatile time_t next_synchronization;
@@ -22,6 +24,11 @@ void copy_file(std::string source, std::string destination, int64_t size){
 }
 
 void synchronize_folders(std::string source, std::string destination){
+	deamon::directory _dir1(source);
+	deamon::directory _dir2(destination);
+	_dir1.get_file_list();
+	
+	
 
 }
 
@@ -33,14 +40,13 @@ void log_message(std::string message){
 
 int main(int argc, char **argv) {
 
-
-
+	synchronize_folders(argv[1], argv[2]);
 	return 0;
 }
 
 
 /*
- * 	std::time_t time_now = time(NULL);
+  	std::time_t time_now = time(NULL);
 	std::tm * ptm = std::localtime(&time_now);
 	char time_text[32];
 	std::strftime(time_text, 32, "%Y-%m-%d %H:%M:%S", ptm);
@@ -48,11 +54,11 @@ int main(int argc, char **argv) {
 	std::cout << msg << std::endl;
 <<<<<<< HEAD
  *
- */
+
 =======
 	return 0;
 }
-*/
+
 
 //aktualnie dzialanie jest nastepujace
 //podajesz sciezke wzgedna np. u mnie 
@@ -64,13 +70,6 @@ int main(int argc, char **argv) {
 #include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
-//mysle zeby dane przechowywac w liscie struktur
-/*typedef struct Lista
-{
-        struct tm *czas;
-        char nazwa[];
-};
-Lista l1;*/
 void ShowDate(char name[])
 {
      char t[100] ;
@@ -84,20 +83,6 @@ void ShowDate(char name[])
      else
          printf("Error\n");
 }
-/*gowno z wiki
-void dodaj_do_listy (Lista *lista, unsigned long liczba)
- {
-   el_listy *wsk, *nowy;
-   wsk = lista;
-   while (wsk->next != NULL)
-     { 
-     wsk = wsk->next;
-     }
-   nowy = malloc (sizeof(el_listy));
-   nowy->val = liczba;
-   nowy->next = NULL;
-   wsk->next = nowy;
- }*/
 void ShowFolder(const char* directory)
 {
     struct dirent* file;
@@ -130,4 +115,4 @@ int main(int argc, char **argv)
     ShowFolder(tab);
     return 0;
 }
->>>>>>> branch 'master' of https://github.com/rafal6now/pr1so.git
+>>>>>>> branch 'master' of https://github.com/rafal6now/pr1so.git*/
